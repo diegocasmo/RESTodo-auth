@@ -4,6 +4,11 @@ class EloquentAccountRepository implements AccountRepositoryInterface {
 
 	public function store($user)
 	{
+		$user += array(
+			'code' => str_random(30),
+			'active' => 0
+			);
+
 		$this->validate($user);
 		// make sure password is hashed before being
 		// save to DB

@@ -27,9 +27,7 @@ class AccountController extends \BaseController {
 		$user = array(
 			'email' => Input::get('email'),
 			'password' => Input::get('password'),
-			'password_repeat' => Input::get('password_repeat'),
-			'code' => str_random(30),
-			'active' => 0
+			'password_repeat' => Input::get('password_repeat')
 			);
 		return $this->accounts->store($user);	
 	}
