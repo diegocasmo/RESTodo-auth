@@ -11,7 +11,26 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+App::bind('AccountRepositoryInterface', 'EloquentAccountRepository');
+
+/** 
+ * make sure all POST, PUT, DELETE
+ * requests are protected against CSRF
+ */
+Route::when('*', 'csrf', array('post', 'put', 'delete'));
+
+/** 
+ * Unauthenticaded group
+ */
+Route::group(array('before' => 'guest'), function() { 
+
+	/** 
+	 * Render home view
+	 */
+	Route::get('/', function()
+	{
+		return View::make('index');
+	});
 });
+
+require_once('routes/AccountRoutes.php');
