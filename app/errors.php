@@ -1,5 +1,12 @@
 <?php
 
+class UnauthorizedException extends Exception {
+	public function __construct($message = null, $code = 401)
+	{
+		parent::__construct($message ?: 'Unauthorized', $code);
+	}
+}
+
 class PermissionException extends Exception {
 	
 	public function __construct($message = null, $code = 403)

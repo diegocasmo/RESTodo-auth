@@ -37,14 +37,7 @@ Route::filter('auth', function()
 {
 	if (Auth::guest())
 	{
-		if (Request::ajax())
-		{
-			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
-			return Redirect::guest('login');
-		}
+		throw new UnauthorizedException('Unauthorized');
 	}
 });
 
@@ -69,7 +62,7 @@ Route::filter('guest', function()
 {
 	if (Auth::check()) 
 	{
-		throw new PermissionException('Forbidden');
+		throw new UnauthorizedException('Unauthorized');
 	}
 });
 
@@ -121,6 +114,14 @@ App::error( function(Symfony\Component\HttpKernel\Exception\HttpException $e, $c
 	return Response::json(array(
 		'error' => $e->getMessage() ?: $default_message
 	), $code, $headers);
+});
+
+/**
+ * Unauthorize Exception Handler
+ */
+App::error(function(UnauthorizedException $e, $code)
+{
+	return Response::json($e->getMessage(), $e->getCode());
 });
 
 /**

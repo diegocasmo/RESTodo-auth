@@ -35,6 +35,7 @@ class AccountController extends \BaseController {
 	/**
 	 * Activate account using the random
 	 * code
+ 	 * @return Response
 	 */
 	public function activateAccount($code) {
 		return $this->accounts->activateByCode($code);

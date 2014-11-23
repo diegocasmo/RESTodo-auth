@@ -1,7 +1,7 @@
 <?php
 
 class EloquentAccountRepositoryTest extends TestCase {
-	
+
 	public function setUp()
 	{
 		parent::setUp();
@@ -149,4 +149,5 @@ class EloquentAccountRepositoryTest extends TestCase {
 		$this->assertTrue($user->email === $user['email']);
 		$this->assertTrue($user->password === $user['password']);
 	}
+	
 }

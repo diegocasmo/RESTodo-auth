@@ -2,7 +2,12 @@
 
 class EloquentAccountRepository implements AccountRepositoryInterface {
 
-	public function store($user)
+	/** 
+	 * Stores a user on DB if it passes validation correctly.
+	 * Hashes password and sets code and active to 0
+	 * @return User
+	 */
+	public function store(array $user)
 	{
 		$user += array(
 			'code' => str_random(30),
@@ -16,6 +21,11 @@ class EloquentAccountRepository implements AccountRepositoryInterface {
 		return User::create($user);
 	}
 
+	/** 
+	 * Activates and account according to random code
+	 * assigned to it upon registration
+	 * @return User
+	 */
 	public function activateByCode($code) {
 		$user = User::where('code', '=', $code)->where('active', '=', 0);
 		if($user->count()) 
@@ -35,7 +45,11 @@ class EloquentAccountRepository implements AccountRepositoryInterface {
 		throw new PermissionException('Action not allowed');
 	}
 
-	public function validate($user)
+	/** 
+	 * Validates user according to rules
+	 * set on User model
+	 */
+	public function validate(array $user)
 	{
 		$validator = Validator::make($user, User::$rules);
 		if($validator->fails()) throw new ValidationException($validator);

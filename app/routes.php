@@ -14,7 +14,7 @@
 App::bind('AccountRepositoryInterface', 'EloquentAccountRepository');
 
 /** 
- * make sure all POST, PUT, DELETE
+ * Make sure all POST, PUT, DELETE
  * requests are protected against CSRF
  */
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
@@ -33,4 +33,5 @@ Route::group(array('before' => 'guest'), function() {
 	});
 });
 
-require_once('routes/AccountRoutes.php');
+require 'routes/AccountRoutes.php';
+

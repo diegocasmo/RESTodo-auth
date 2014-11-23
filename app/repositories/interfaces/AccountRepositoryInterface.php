@@ -1,8 +1,8 @@
 <?php
 
 interface AccountRepositoryInterface {
-	public function store($user);
+	public function store(array $user);
 	public function activateByCode($code);
-	public function validate($user);
+	public function validate(array $user);
 	public function instance();
 }
