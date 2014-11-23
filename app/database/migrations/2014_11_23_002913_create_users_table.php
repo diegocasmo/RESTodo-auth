@@ -9,7 +9,7 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function(Blueprint $table) {
 			$table->increments('id');
-			$table->text('email');
+			$table->string('email', 255)->unique();
 			$table->text('password');
 			$table->text('code');
 			$table->tinyInteger('active')->default('0');
