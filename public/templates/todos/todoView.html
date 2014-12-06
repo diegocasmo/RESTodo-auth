@@ -1,0 +1,14 @@
+<li>
+	<div class="todo">
+		<button class="delete" id="{{id}}">X</button>
+		
+		<label>{{title}}</label>
+	    
+	    <form method="POST" action="#">
+	        {{#if done}}
+	        <input id={{id}} type="checkbox" checked>{{else}}
+	        <input id={{id}} type="checkbox">{{/if}}
+	    </form>
+	</div>
+</li>
+	

@@ -1,0 +1,16 @@
+form {
+	margin: 10px 0px;
+}
+
+button, input[type="submit"] {
+	background: $subimt-bg;
+	color: $subimt-color;
+	border: 0px;
+	padding: 10px 20px;
+	cursor: pointer;
+	@include border-radius(4px);
+
+	&:hover, &:active, &:focus {
+		background: $subimt-bg;
+	}
+}
