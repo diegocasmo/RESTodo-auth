@@ -18,7 +18,16 @@ class EloquentAccountRepository implements AccountRepositoryInterface {
 		// make sure password is hashed before being
 		// save to DB
 		$user['password'] = Hash::make($user['password']);
-		return User::create($user);
+		$user = User::create($user);
+
+		if(!$user)
+		{
+			throw new Exception();
+		}
+		
+		$this->sendUserEmail($user);
+
+		return $user;
 	}
 
 	/** 
@@ -45,6 +54,12 @@ class EloquentAccountRepository implements AccountRepositoryInterface {
 		throw new PermissionException('Action not allowed');
 	}
 
+	public function sendUserEmail($user) {
+			// Send email
+			Mail::send('emails.auth.activate', array('link' => URL::route('account.activate', $user->code)), function($message) use ($user) {
+				$message->to($user->email)->subject('Activate your account');
+			});
+	}
 	/** 
 	 * Validates user according to rules
 	 * set on User model

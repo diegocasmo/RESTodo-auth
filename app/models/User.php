@@ -32,11 +32,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     );
 
 	/**
+	 * Validation rules to sign in a user
+	 */
+    public static $signInRules = array(
+		'email' => 'required|email',
+		'password' => 'required',
+	);
+
+	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('id', 'password', 'code', 'active');
+	protected $hidden = array('id', 'password', 'code', 'active', 'remember_token');
 
 	/**
 	 * Model relationship with todos model

@@ -12,6 +12,7 @@
 */
 
 App::bind('AccountRepositoryInterface', 'EloquentAccountRepository');
+App::bind('UserRepositoryInterface', 'EloquentUserRepository');
 
 /** 
  * Make sure all POST, PUT, DELETE
@@ -22,7 +23,8 @@ Route::when('*', 'csrf', array('post', 'put', 'delete'));
 /** 
  * Unauthenticaded group
  */
-Route::group(array('before' => 'guest'), function() { 
+Route::group(array('before' => 'guest'), function() 
+{ 
 
 	/** 
 	 * Render home view
@@ -34,4 +36,4 @@ Route::group(array('before' => 'guest'), function() {
 });
 
 require 'routes/AccountRoutes.php';
-
+require 'routes/UserRoutes.php';

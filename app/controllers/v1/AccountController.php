@@ -24,12 +24,7 @@ class AccountController extends \BaseController {
 	 */
 	public function store()
 	{	
-		$user = array(
-			'email' => Input::get('email'),
-			'password' => Input::get('password'),
-			'password_repeat' => Input::get('password_repeat')
-			);
-		return $this->accounts->store($user);	
+		return $this->accounts->store(Input::all());	
 	}
 
 	/**
