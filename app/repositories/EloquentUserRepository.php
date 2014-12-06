@@ -6,7 +6,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
 	 * Sign in a user if credentials 
 	 * and validation are both are correct
 	 */
-	public function store(array $user) {
+	public function postSignIn(array $user) {
 		// validate user
 		$this->validate($user);
 
