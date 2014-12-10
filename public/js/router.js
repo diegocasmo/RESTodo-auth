@@ -21,7 +21,7 @@ define([
         var app_router = new AppRouter;
 
         app_router.on('route:login', function() {
-            if($.cookie('_auth')) {
+            if($.cookie('_auth') === 'true') {
                 this.navigate('home', {trigger: true});
             } else {
                 var userLayoutManager = new UserLayoutManager({
@@ -31,10 +31,11 @@ define([
         });
 
         app_router.on('route:home', function() {
-            if($.cookie('_auth')) {
+            if($.cookie('_auth') === 'true') {
                 var todosLayoutManager = new TodosLayoutManager({
                     router: this
                 });
+                console.log('here');
             } else {
                 this.navigate('login', {trigger: true});
             }

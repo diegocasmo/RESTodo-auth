@@ -1,0 +1,20 @@
+span.error {
+    display: none;
+    color: $error-color;
+    text-align: center;
+    background: $error-bg;
+    margin: 0px;
+    font-size: 14px;
+    @include border-radius(4px);
+}
+
+span.success {
+    color: $success-color;
+    text-align: center;
+    background: $success-bg;
+    font-size: 14px;
+    display: block;
+    padding: 7px;
+    @include border-radius(4px);
+    margin: 10px;    
+}

@@ -12,12 +12,3 @@ span.flash-message {
     color: $message-color;
     @include border-radius(4px);
 }
-
-span.error {
-    display: block;
-    color: $message-color;
-    text-align: center;
-    background: none;
-    margin: 0px;
-    font-size: 14px;
-}

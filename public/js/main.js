@@ -13,7 +13,7 @@ require.config({
 require([
   'app',
   'jqueryCookie'
-], function(App, Message) {	
+], function(App, Message) {
 	// set up CSRF token in requests header
 	$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 		return jqXHR.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
@@ -34,7 +34,7 @@ require([
 	        }
 	    }
 	});
-
+    
 	// set up application
 	App.initialize();
 });

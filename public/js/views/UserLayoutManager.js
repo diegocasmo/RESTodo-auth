@@ -4,9 +4,8 @@ define([
     'backbone',
     'handlebars',
     'helpers/Message',
-    'views/user/UserLoginView',
-    'views/user/UserCreateAccountView'
-], function($, _, Backbone, Handlebars, Message, UserLoginView, UserCreateAccountView) {
+    'views/user/RegistrationView'
+], function($, _, Backbone, Handlebars, Message, RegistrationView) {
 
     var UserLayoutManager = Backbone.View.extend({
 
@@ -16,14 +15,12 @@ define([
             this.router = options.router;
             this.message = Message.getInstance();
 
-            // initialize sub views
-            this.userLoginView = new UserLoginView();
-            this.userCreateAccountView = new UserCreateAccountView();
+            // initialize sub view
+            this.registrationView = new RegistrationView();
         },
 
         render: function() {
-            this.userLoginView.setElement().render();
-            this.userCreateAccountView.setElement().render();
+            this.registrationView.setElement().render();
         },
     });
 

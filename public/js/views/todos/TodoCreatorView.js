@@ -33,11 +33,11 @@ define([
             event.preventDefault();
             
             var that = this,        
-                title = $('input[name="title"]').val();
+                title = $.trim($('input[name="title"]').val());
 
             var todo = new TodoModel({
-                title: $.trim(title),
-                done: $.trim(0)
+                title: title,
+                done: 0
             });
 
             var validator = todo._validate();
