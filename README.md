@@ -1,1 +1,1 @@
-A simple todo application created with Laravel and AngularJS with authentication features.
+A simple todo application created with Laravel and Backbone.js with authentication features.

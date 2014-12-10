@@ -11,17 +11,22 @@ h1, h2, h3, h4, h5, h6 {
 /* line 9, ../sass/base/_base.scss */
 .app-wrapper {
   position: relative;
-  margin-top: 50px;
+}
+@media (min-width: 640px) {
+  /* line 9, ../sass/base/_base.scss */
+  .app-wrapper {
+    margin-top: 50px;
+  }
 }
 
-/* line 14, ../sass/base/_base.scss */
+/* line 17, ../sass/base/_base.scss */
 .site-title {
   text-align: center;
   color: white;
   margin: 0px;
 }
 
-/* line 20, ../sass/base/_base.scss */
+/* line 23, ../sass/base/_base.scss */
 .main-content {
   background: rgba(211, 45, 45, 0.9);
   padding: 20px 10px;
@@ -30,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: #969696 2px 2px 3px;
 }
 @media (min-width: 768px) {
-  /* line 20, ../sass/base/_base.scss */
+  /* line 23, ../sass/base/_base.scss */
   .main-content {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -38,28 +43,28 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* line 30, ../sass/base/_base.scss */
+/* line 33, ../sass/base/_base.scss */
 a {
   outline: none;
 }
 
-/* line 34, ../sass/base/_base.scss */
+/* line 37, ../sass/base/_base.scss */
 ul {
   margin: 0px;
   padding: 0px;
 }
 
-/* line 39, ../sass/base/_base.scss */
+/* line 42, ../sass/base/_base.scss */
 li {
   list-style: none;
 }
 
-/* line 43, ../sass/base/_base.scss */
+/* line 46, ../sass/base/_base.scss */
 input {
   margin: 0px;
 }
 
-/* line 47, ../sass/base/_base.scss */
+/* line 50, ../sass/base/_base.scss */
 input[type="submit"] {
   border: 0px;
   padding: 10px 20px;

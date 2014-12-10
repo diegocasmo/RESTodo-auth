@@ -64,9 +64,28 @@ define([
                     error: function(model, response, options) {
                         if(response.status === 400) {
                             var errors = JSON.parse(response.responseText);
-                            // parse response
 
-                            // that.showErrors();
+                            var parsedErrors = [];
+                            _.each(errors, function(error, key) {
+                                switch(key) {
+                                    case 'email':
+                                        parsedErrors.push({
+                                            email: error.toString()
+                                        });
+                                        break;
+                                    case 'password':
+                                        parsedErrors.push({
+                                            password: error.toString()
+                                        });
+                                        break;
+                                    case 'password_repeat':
+                                        parsedErrors.push({
+                                            password_repeat: error.toString()
+                                        });
+                                        break;
+                                }
+                            });
+                            that.showErrors(parsedErrors);
                         } else {
                             // show static message error
                         }
@@ -78,12 +97,17 @@ define([
         },
         
         showErrors: function(errors) {
-            console.log(errors);
-            errors.forEach(function(objArr) {
-                $error = $('.error-' + objArr.key);
-                $error.text(objArr.value);
-                $error.css('display', 'block');
-            });
+            for (var key in errors) {
+               var obj = errors[key];
+               for (var prop in obj) {
+                  if(obj.hasOwnProperty(prop)){
+                    $error = $('.error-' + prop);
+                    $error.text(obj[prop]);
+                    $error.css('display', 'block');
+                  }
+               }
+            }
+
         },
 
         cleanAllErrors: function() {

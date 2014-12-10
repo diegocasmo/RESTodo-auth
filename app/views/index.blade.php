@@ -6,12 +6,11 @@
         <div class="small-12 columns">
 
         <span id="flash-message" class="flash-message"></span>
-        <h1 class="site-title">RESTodo</h1>    
+        <h1 class="site-title">RESTodo Auth</h1>    
 
         <div class="user row">
             <div class="small-12 medium-8 small-centered medium-centered columns">
-                <div id="user-login"></div>
-                <div id="create-account"></div>
+                <div id="registration"></div>
             </div>            
         </div>  
 

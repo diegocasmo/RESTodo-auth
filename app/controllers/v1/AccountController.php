@@ -25,9 +25,7 @@ class AccountController extends \BaseController {
 	 */
 	public function store()
 	{	
-		$this->accounts->store(Input::all());	
-        return  Redirect::route('index')
-               ->with('success', 'Your account has been created. We have sent you an email to activate your account.');
+		return $this->accounts->store(Input::all());	
 	}
 
 	/**
