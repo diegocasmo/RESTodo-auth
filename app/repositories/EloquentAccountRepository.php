@@ -15,6 +15,7 @@ class EloquentAccountRepository implements AccountRepositoryInterface {
 			);
 
 		$this->validate($user);
+		
 		// make sure password is hashed before being
 		// save to DB
 		$user['password'] = Hash::make($user['password']);

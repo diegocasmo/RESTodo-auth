@@ -5,6 +5,7 @@ namespace v1;
 use BaseController;
 use AccountRepositoryInterface;
 use Input;
+use Redirect;
 
 class AccountController extends \BaseController {
     
@@ -24,7 +25,9 @@ class AccountController extends \BaseController {
 	 */
 	public function store()
 	{	
-		return $this->accounts->store(Input::all());	
+		$this->accounts->store(Input::all());	
+        return  Redirect::route('index')
+               ->with('success', 'Your account has been created. We have sent you an email to activate your account.');
 	}
 
 	/**
@@ -33,6 +36,8 @@ class AccountController extends \BaseController {
  	 * @return Response
 	 */
 	public function activateAccount($code) {
-		return $this->accounts->activateByCode($code);
+		$this->accounts->activateByCode($code);
+        return  Redirect::route('index')
+                ->with('success', 'Good news! Your account has been activated, you can now sign in.');
 	}
 }

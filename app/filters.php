@@ -135,9 +135,9 @@ App::error(function(PermissionException $e, $code)
 /**
  * Validation Exception Handler
  */
-App::error(function(ValidationException $e, $code)
+App::error(function(ValidationException $e)
 {
-	return Response::json($e->getMessages(), $code);
+	return Response::json($e->getMessages(), $e->getCode());
 });
 
 /**

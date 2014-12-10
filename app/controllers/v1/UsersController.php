@@ -5,6 +5,7 @@ namespace v1;
 use BaseController;
 use UserRepositoryInterface;
 use Input;
+use Redirect;
 
 class UsersController extends \BaseController {
 
@@ -21,7 +22,7 @@ class UsersController extends \BaseController {
 	 */
 	public function postSignIn()
 	{
-		return $this->users->store(Input::all());
+		return $this->users->postSignIn(Input::all());
 	}
 
 	/**
@@ -29,6 +30,8 @@ class UsersController extends \BaseController {
 	 */
 	public function getSignOut()
 	{
-		return $this->users->getSignOut();
+		$this->users->getSignOut();
+         return  Redirect::route('index')
+               ->with('success', 'You have been signed out.');       
 	}
 }

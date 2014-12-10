@@ -25,14 +25,13 @@ Route::when('*', 'csrf', array('post', 'put', 'delete'));
  */
 Route::group(array('before' => 'guest'), function() 
 { 
-
-	/** 
-	 * Render home view
-	 */
-	Route::get('/', function()
-	{
-		return View::make('index');
-	});
+    /** 
+     * Render home view
+     */
+    Route::get('/', array(
+        'as' => 'index',
+        'uses' => 'BaseController@index'
+        ));
 });
 
 require 'routes/AccountRoutes.php';
