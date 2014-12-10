@@ -16,12 +16,17 @@ define([
             this.message = Message.getInstance();
 
             // initialize sub view
-            this.registrationView = new RegistrationView();
+            this.registrationView = new RegistrationView(options);
         },
 
         render: function() {
             this.registrationView.setElement().render();
         },
+
+        cleanSubViews: function() {
+            this.registrationView.$el.html('');
+            this.registrationView.undelegateEvents();
+        }
     });
 
     return UserLayoutManager;

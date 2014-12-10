@@ -6,7 +6,8 @@ define([
     'collections/TodosCollection',
     'views/todos/TodoListView',
     'views/todos/TodoCreatorView',
-    'helpers/Message'    
+    'helpers/Message',
+    'jqueryCookie'
 ], function($, _, Backbone, Handlebars, TodosCollection, TodoListView, TodoCreatorView, Message) {
 
     var TodosLayoutManager = Backbone.View.extend({
@@ -15,6 +16,9 @@ define([
 
         initialize: function(options) {
             this.router = options.router;
+            //this._signOut();
+
+            /*
             this.collection = new TodosCollection();
             this.todoCreatorView = new TodoCreatorView({
                     router: this.router,
@@ -22,11 +26,19 @@ define([
                 });
             this.message = Message.getInstance();
             this._configureRender();
+            */
         },
+
 
         render: function(todoListView) {
             todoListView.setElement(this.$('#todo-list')).render();
             this.todoCreatorView.setElement(this.$('#todo-creator')).render();
+        },
+
+        _signOut: function() {
+            $.get('http://localhost:8000/api/v1/user/sign-out');
+            $.cookie('_auth', false);
+            this.router.navigate('login', {trigger: true});
         },
 
         _configureRender: function() {

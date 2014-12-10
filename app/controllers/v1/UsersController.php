@@ -30,8 +30,6 @@ class UsersController extends \BaseController {
 	 */
 	public function getSignOut()
 	{
-		$this->users->getSignOut();
-         return  Redirect::route('index')
-               ->with('success', 'You have been signed out.');       
+		$this->users->getSignOut();     
 	}
 }

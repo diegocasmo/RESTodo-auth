@@ -24,11 +24,13 @@ require([
 	    statusCode: {
 	        401: function(){
 	            // Redirec the to the login page.
+                console.log('Redirect to the login page.');
 	            $.cookie('_auth', false);
 	            window.location.replace('/#login');
 	        },
 	        403: function() {
 	            // 403 -- Access denied
+                console.log('Redirect to the login page.');
 	            $.cookie('_auth', false);
 	            window.location.replace('/#login');
 	        }

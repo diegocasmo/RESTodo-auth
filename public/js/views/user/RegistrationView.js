@@ -5,7 +5,8 @@ define([
     'handlebars',
     'text!templates/user/registrationViewTemplate.html',
     'helpers/Message',
-    'models/UserModel'
+    'models/UserModel',
+    'jqueryCookie'
 ], function($, _, Backbone, Handlebars, registrationView, Message, UserModel) {
 
     var RegistrationView = Backbone.View.extend({
@@ -16,10 +17,12 @@ define([
 
         events: {
             'click #log-in': '_logIn',
-            'click #create': '_createAccount'
+            'click #create': '_createAccount',
+            'focus input': '_cleanSingleError'
         },
 
-        initialize: function() {
+        initialize: function(options) {
+            this.router = options.router;
             this.message = Message.getInstance();
             this.render();
         },
@@ -31,6 +34,41 @@ define([
 
         _logIn: function(event) {
             event.preventDefault();
+
+            var email = $.trim($('input[name="log-in-email"]').val()),
+                password = $('input[name="log-in-password"]').val();
+
+            var user = new UserModel({
+                email: email,
+                password: password
+            });
+
+            // make sure we clean all error before updating 
+            // form state
+            this._cleanAllErrors();
+
+            var validator = user._validateLogIn(),
+                that = this;
+
+            if (_.isEmpty(validator)) {
+                user.save(null, 
+                    {
+                    url: user.url + 'user/sign-in',
+                    success: function(model, response, options) {
+                        console.log('You have been logged in.');
+                        $.cookie('_auth', true);
+                        that.router.navigate('home', {trigger: true});
+                    },
+
+                    error: function(model, response, options) {
+                        console.log('_logIn error');
+                        $.cookie('_auth', false);
+                        that.router.navigate('login', {trigger: true});
+                    }
+                });
+            } else {
+                this._showErrors(validator);
+            }
         },
 
         _createAccount: function(event) {
@@ -48,7 +86,7 @@ define([
 
             // make sure we clean all error before updating 
             // form state
-            this.cleanAllErrors();
+            this._cleanAllErrors();
 
             var validator = user._validateCreate(),
                 that = this;
@@ -85,18 +123,18 @@ define([
                                         break;
                                 }
                             });
-                            that.showErrors(parsedErrors);
+                            that._showErrors(parsedErrors);
                         } else {
                             // show static message error
                         }
                     }
                 });
             } else {
-                this.showErrors(validator);
+                this._showErrors(validator);
             }
         },
         
-        showErrors: function(errors) {
+        _showErrors: function(errors) {
             for (var key in errors) {
                var obj = errors[key];
                for (var prop in obj) {
@@ -110,12 +148,20 @@ define([
 
         },
 
-        cleanAllErrors: function() {
+        _cleanAllErrors: function() {
             $errors = $('.error');
             _.each($errors, function(error) {
                 $(error).css('display', 'none');
                 $(error).text('');
             });
+        },
+
+        _cleanSingleError: function(event) {
+            //console.log('_cleanSingleError');
+            /*
+            $(error).css('display', 'none');
+            $(error).text('');
+            */
         }
     });
 

@@ -20,19 +20,15 @@ App::bind('UserRepositoryInterface', 'EloquentUserRepository');
  */
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
+
 /** 
- * Unauthenticaded group
+ * Render home view
  */
-Route::group(array('before' => 'guest'), function() 
-{ 
-    /** 
-     * Render home view
-     */
-    Route::get('/', array(
-        'as' => 'index',
-        'uses' => 'BaseController@index'
-        ));
-});
+Route::get('/', array(
+    'as' => 'index',
+    'uses' => 'BaseController@index'
+    ));
 
 require 'routes/AccountRoutes.php';
 require 'routes/UserRoutes.php';
+require 'routes/TodosRoutes.php';

@@ -70,8 +70,40 @@
             }
 
             return errors;
-        }
+        },
 
+        _validateLogIn: function() {
+            var email = $.trim(this.attributes.email),
+                password = $.trim(this.attributes.password),
+                password_repeat = $.trim(this.attributes.password_repeat);
+
+            var errors = [];
+
+            // validates email input
+            var pemailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            if (email === '' || email === this._customErrors.email.empty) {
+                errors.push({
+                    email: this._customErrors.email.empty
+                });
+            } else if (typeof(email) == 'undefined' || !pemailRegex.test(email)) {
+                errors.push({
+                    email: this._customErrors.email.invalidEmail
+                });
+            }
+            
+            // validates password input
+            if (password === '' || password === this._customErrors.password.empty) {
+                errors.push({
+                    password: this._customErrors.password.empty
+                });
+            } else if(password.length < 3) {
+                errors.push({
+                    password: this._customErrors.password.tooShort
+                });      
+            }
+
+            return errors;
+        }
     });
 
     return UserModel;
