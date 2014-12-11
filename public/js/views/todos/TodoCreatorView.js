@@ -14,17 +14,17 @@ define([
         template: Handlebars.compile(todoCreatorView),
 
         el: $('#todo-creator'),
-
+        
         events: {
             'submit': '_createTodo',
             'focus input[type="text"]': '_deleteTitleErrorMessages',
             'click #log-out': '_signOut'
         },
-
+        
         initialize: function(options) {
             this.router = options.router;
             this.layoutManager = options.todosLayoutManager;
-            //this.model = new TodoModel();
+            this.model = new TodoModel();
             this.message = Message.getInstance();
             this.render();
         },
@@ -45,9 +45,7 @@ define([
         _createTodo: function(event) {
             event.preventDefault();
             console.log('_createTodo');
-            
-            /*
-            
+
             var that = this,        
                 title = $.trim($('input[name="title"]').val());
 
@@ -73,11 +71,9 @@ define([
                     $('[name="' + objArr.key + '"]').val(objArr.value);
                 });
             }
-            */
         },
 
         _deleteTitleErrorMessages: function(event) {
-            console.log('_deleteTitleErrorMessages');
             event.preventDefault();
             _.each(this.model._customErrors.title, function(customError) {
                 $currentTarget = $(event.currentTarget);

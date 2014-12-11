@@ -18,22 +18,22 @@ define([
             'home': 'home'
         },
 
-        cleanViews: function() {
+        cleanTodosManager: function() {
+            if(todosLayoutManager !== 'undefined') {
+                console.log('clean todosLayoutManager');
+                todosLayoutManager.cleanSubViews();
+                todosLayoutManager.$el.html('');
+                todosLayoutManager.undelegateEvents();
+            }           
+        },
+
+        cleanHomeManager: function() {
             if(userLayoutManager !== 'undefined') {
-                console.log('userLayoutManager');
+                console.log('clean userLayoutManager');
                 userLayoutManager.cleanSubViews();
                 userLayoutManager.$el.html('');
                 userLayoutManager.undelegateEvents();
             }
-
-            if(todosLayoutManager !== 'undefined') {
-                console.log('todosLayoutManager');
-                console.log(todosLayoutManager);
-                todosLayoutManager.cleanSubViews();
-                todosLayoutManager.$el.empty();
-                todosLayoutManager.undelegateEvents();
-            }
-
         }
     });
 
@@ -43,7 +43,7 @@ define([
 
         app_router.on('route:login', function() {
 
-            app_router.cleanViews();
+            app_router.cleanTodosManager();
 
             if($.cookie('_auth') === 'true') {
                 this.navigate('home', {trigger: true});
@@ -56,7 +56,7 @@ define([
         });
 
         app_router.on('route:home', function() {
-            app_router.cleanViews();
+            app_router.cleanHomeManager();
 
             if($.cookie('_auth') === 'true') {
                 todosLayoutManager = new TodosLayoutManager({

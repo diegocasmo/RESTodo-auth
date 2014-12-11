@@ -16,34 +16,25 @@ define([
 
         initialize: function(options) {
             this.router = options.router;
-            this._simulateAuth();
+            this._simulatePrivateRoute();
+
             this.todoCreatorView = new TodoCreatorView({
                     router: this.router,
                     todosLayoutManager: this
                 });
-            //this._signOut();
-
-            /*
-            this.collection = new TodosCollection();
-            this.message = Message.getInstance();
-            this._configureRender();
-            */
-
-            this.render();
         },
 
-
-        render: function(todoListView) {
-            //todoListView.setElement(this.$('#todo-list')).render();
+        render: function() {
             this.todoCreatorView.setElement().render();
         },
 
-        _simulateAuth: function() {
+        _simulatePrivateRoute: function() {
             $.get('http://localhost:8000/api/v1/user/test');
         },
 
         cleanSubViews: function() {
-            this.todoCreatorView.remove();
+            this.todoCreatorView.$el.html('');
+            this.todoCreatorView.undelegateEvents();
         },
 
         _configureRender: function() {
