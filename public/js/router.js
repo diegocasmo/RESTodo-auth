@@ -18,18 +18,14 @@ define([
             'home': 'home'
         },
 
-        cleanTodosManager: function() {
+        cleanSubViews: function() {
             if(todosLayoutManager !== 'undefined') {
-                console.log('clean todosLayoutManager');
                 todosLayoutManager.cleanSubViews();
                 todosLayoutManager.$el.html('');
                 todosLayoutManager.undelegateEvents();
             }           
-        },
 
-        cleanHomeManager: function() {
             if(userLayoutManager !== 'undefined') {
-                console.log('clean userLayoutManager');
                 userLayoutManager.cleanSubViews();
                 userLayoutManager.$el.html('');
                 userLayoutManager.undelegateEvents();
@@ -43,7 +39,7 @@ define([
 
         app_router.on('route:login', function() {
 
-            app_router.cleanTodosManager();
+            app_router.cleanSubViews();
 
             if($.cookie('_auth') === 'true') {
                 this.navigate('home', {trigger: true});
@@ -56,7 +52,8 @@ define([
         });
 
         app_router.on('route:home', function() {
-            app_router.cleanHomeManager();
+            
+            app_router.cleanSubViews();
 
             if($.cookie('_auth') === 'true') {
                 todosLayoutManager = new TodosLayoutManager({
