@@ -56,7 +56,7 @@ define([
 
             that.model.save({
                 'id': that.model.get('id'),
-                'title': that.model.get('title'),
+                'todo': that.model.get('todo'),
                 'done': done
             }, 
             { 

@@ -15,48 +15,44 @@ define([
         el: $('#todos'),
 
         initialize: function(options) {
+            this.options = options;
             this.router = options.router;
-            this._simulatePrivateRoute();
+            this.message = Message.getInstance();
+            this.collection = new TodosCollection();
 
+            // initialize subviews
             this.todoCreatorView = new TodoCreatorView({
                     router: this.router,
-                    todosLayoutManager: this
+                    layoutManager: this
                 });
+            this.todoListView = new TodoListView(options);
+            
+            // fetch collection
+            this.collection.getResults();
+
+            this.listenTo(this.collection, 'successOnFetch', this.handleSuccess);
+            this.listenTo(this.collection, 'errorOnFetch', this.handleError);
+        },
+
+        handleSuccess: function() {
+            this.render();
+        },
+
+        errorOnFetch: function() {
+            console.log('errorOnFetch');
         },
 
         render: function() {
-            this.todoCreatorView.setElement().render();
-        },
-
-        _simulatePrivateRoute: function() {
-            $.get('http://localhost:8000/api/v1/user/test');
+            this.todoCreatorView.render().el;
+            this.todoListView.render(this.collection).el;
         },
 
         cleanSubViews: function() {
-            this.todoCreatorView.$el.html('');
+            $('#todo-creator').html('');
             this.todoCreatorView.undelegateEvents();
-        },
-
-        _configureRender: function() {
-            var that = this;
-            that.collection.fetch({
-                success: function(collection, response, options) {
-                    if(typeof response === 'object') {
-                        that.todoListView = new TodoListView({
-                            collection: that.collection,
-                            layoutManager: that
-                        });
-                        that.render(that.todoListView);
-                    } else {
-                        that.message._setStaticMessage(response);
-                    }
-                },
-
-                error: function(collection, response, options) {
-                    that.message._setStaticMessage(that.message._customErrors.error);
-                } 
-            });
-        },
+            $('#todo-list').html('');
+            this.todoListView.undelegateEvents();
+        }
     });
 
     return TodosLayoutManager;

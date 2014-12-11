@@ -6,6 +6,7 @@ li {
     @include border-radius(4px);
     @include box-shadow($todo-shadow 1px 1px 1px);
 }
+
 .todo {
     button {
         position: absolute;

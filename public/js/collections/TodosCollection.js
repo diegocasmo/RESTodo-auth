@@ -8,7 +8,21 @@ define([
 
   	model: TodoModel,
 
-    url: 'http://localhost/RESTodo/backend/api/todos/',
+    url: 'http://localhost:8000/api/v1/todos',
+
+    getResults: function() {
+        var that = this;
+        this.fetch({
+            reset: true,
+            success: function(collection, response, options) {
+                that.trigger('successOnFetch');
+            },
+
+            error: function(collection, response, options) {
+                that.trigger('errorOnFetch');
+            } 
+        });
+    },
   
   });
 

@@ -5,38 +5,38 @@
 
     var TodoModel = Backbone.Model.extend({
 
-        url: 'http://localhost/RESTodo/backend/api/todos/',
+        url: 'http://localhost:8000/api/v1/todos/',
 
         defaults: {
-            title: '',
+            todo: '',
             done: 0
         },
         
         _customErrors: {
-            title: {
-                empty: 'Please enter a Title.',
-                tooLong: 'Title is too long.'
+            todo: {
+                empty: 'Please enter a todo.',
+                tooLong: 'todo is too long.'
             },
             done: {
-                empty: 'Please enter a valid value for Done.'
+                empty: 'Please enter a valid value for done.'
             }
         },
 
         _validate: function() {
-            var title = $.trim(this.attributes.title),
-                done = $.trim(this.attributes.done);
+            var todo = this.attributes.todo,
+                done = this.attributes.done;
 
             var errors = [];
 
-            if (title === '' || title === this._customErrors.title.empty) {
+            if (todo === '' || todo === this._customErrors.todo.empty) {
                 errors.push({
-                    key: 'title',
-                    value: this._customErrors.title.empty
+                    key: 'todo',
+                    value: this._customErrors.todo.empty
                 });
-            } else if( title.length > 255 || title === this._customErrors.title.tooLong) {
+            } else if( todo.length > 255 || todo === this._customErrors.todo.tooLong) {
                  errors.push({
-                    key: 'title',
-                    value: this._customErrors.title.tooLong
+                    key: 'todo',
+                    value: this._customErrors.todo.tooLong
                 });               
             }
 

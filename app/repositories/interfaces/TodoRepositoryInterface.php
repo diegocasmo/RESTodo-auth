@@ -1,6 +1,7 @@
 <?php
 
 interface TodoRepositoryInterface {
-    public function validate(array $user);
+    public function index();
+    public function validate(array $todo);
     public function instance();
 }

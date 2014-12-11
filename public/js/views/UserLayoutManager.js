@@ -20,11 +20,11 @@ define([
         },
 
         render: function() {
-            this.registrationView.setElement().render();
+            this.registrationView.render().el;
         },
 
         cleanSubViews: function() {
-            this.registrationView.$el.html('');
+            $('#registration').html('');
             this.registrationView.undelegateEvents();
         }
     });

@@ -17,7 +17,7 @@ define([
         
         events: {
             'submit': '_createTodo',
-            'focus input[type="text"]': '_deleteTitleErrorMessages',
+            'focus input[type="text"]': '_deleteTodoErrorMessages',
             'click #log-out': '_signOut'
         },
         
@@ -47,10 +47,10 @@ define([
             console.log('_createTodo');
 
             var that = this,        
-                title = $.trim($('input[name="title"]').val());
+                todo = $.trim($('input[name="todo"]').val());
 
             var todo = new TodoModel({
-                title: title,
+                todo: todo,
                 done: 0
             });
 
@@ -73,9 +73,9 @@ define([
             }
         },
 
-        _deleteTitleErrorMessages: function(event) {
+        _deleteTodoErrorMessages: function(event) {
             event.preventDefault();
-            _.each(this.model._customErrors.title, function(customError) {
+            _.each(this.model._customErrors.todo, function(customError) {
                 $currentTarget = $(event.currentTarget);
                 if($currentTarget.val() === customError)
                     $currentTarget.val('');

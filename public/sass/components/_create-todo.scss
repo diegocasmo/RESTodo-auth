@@ -21,10 +21,17 @@
 	}
 
 	input[type="submit"] {
+        background: $create-submit-bg;
+        color: $create-submit-color;
+
 		@include breakpoint($tab, true) {
 			@include border-corner-radius(top, left, 0px);
 			@include border-corner-radius(bottom, left, 0px);
 			width: 35%;
 		}
+
+        &:hover, &:active, &:focus {
+            background: $registration-subimt-bg;
+        }
 	}
 }

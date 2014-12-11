@@ -18,6 +18,24 @@
         text-align: left;
         padding: 0px 5px;
     }
+
+    button, input[type="submit"] {
+        background: $registration-subimt-bg;
+        color: $registration-subimt-color;
+
+        &:hover, &:active, &:focus {
+            background: $registration-subimt-bg;
+        }
+    }
+}
+
+.log-out {
+    background: $registration-subimt-bg;
+    color: $registration-subimt-color;
+
+    &:hover, &:active, &:focus {
+        background: $registration-subimt-bg;
+    }
 }
 
 .field {

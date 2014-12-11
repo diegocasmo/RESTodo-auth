@@ -13,22 +13,21 @@ define([
 
         initialize: function(options) {
             this.layoutManager = options.layoutManager;
-            this.collection = options.collection;
         },
 
-        render: function() {
-            var todoView = this.collection.map(function(todo) {
+        render: function(collection) {
+            var todoView = collection.map(function(todo) {
                 return (new TodoView({
                     model: todo
                 })).render().el;
             });
 
             this.$el.html(todoView);
+            
             return this;
         }
 
     });
 
     return TodoListView;
-
 });

@@ -21,13 +21,11 @@ define([
         cleanSubViews: function() {
             if(todosLayoutManager !== 'undefined') {
                 todosLayoutManager.cleanSubViews();
-                todosLayoutManager.$el.html('');
                 todosLayoutManager.undelegateEvents();
             }           
 
             if(userLayoutManager !== 'undefined') {
                 userLayoutManager.cleanSubViews();
-                userLayoutManager.$el.html('');
                 userLayoutManager.undelegateEvents();
             }
         }

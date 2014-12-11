@@ -12,7 +12,7 @@ Route::group(array('prefix' => 'api/v1'), function()
         /** 
          * Todos reources
          */
-        Route::resource('todo', 'v1\TodosController');
+        Route::resource('todos', 'v1\TodosController');
 
         /*
          *  Test route for auth (GET)

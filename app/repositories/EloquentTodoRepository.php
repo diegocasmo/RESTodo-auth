@@ -1,8 +1,11 @@
 <?php
 
-<?php
-
 class EloquentTodoRepository implements TodoRepositoryInterface {
+
+    public function index() {
+        $todos = User::find(Auth::id())->todos;
+        return $todos;
+    }
 
     /** 
      * Validates todo according to rules
