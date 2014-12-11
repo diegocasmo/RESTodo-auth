@@ -44,6 +44,8 @@ define([
             if($.cookie('_auth') === 'true') {
                 this.navigate('home', {trigger: true});
             } else {
+                // make sure server session is always destroyed
+                $.get('http://localhost:8000/api/v1/user/sign-out');
                 userLayoutManager = new UserLayoutManager({
                     router: this
                 });

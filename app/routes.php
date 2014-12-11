@@ -13,6 +13,7 @@
 
 App::bind('AccountRepositoryInterface', 'EloquentAccountRepository');
 App::bind('UserRepositoryInterface', 'EloquentUserRepository');
+App::bind('TodoRepositoryInterface', 'EloquentTodoRepository');
 
 /** 
  * Make sure all POST, PUT, DELETE
@@ -31,4 +32,4 @@ Route::get('/', array(
 
 require 'routes/AccountRoutes.php';
 require 'routes/UserRoutes.php';
-require 'routes/TodosRoutes.php';
+require 'routes/TodoRoutes.php';
