@@ -18,15 +18,19 @@ define([
             'home': 'home'
         },
 
-        cleanSubViews: function() {
+        cleanViews: function() {
             if(userLayoutManager !== 'undefined') {
+                console.log('userLayoutManager');
                 userLayoutManager.cleanSubViews();
                 userLayoutManager.$el.html('');
                 userLayoutManager.undelegateEvents();
             }
 
             if(todosLayoutManager !== 'undefined') {
-                todosLayoutManager.$el.html('');
+                console.log('todosLayoutManager');
+                console.log(todosLayoutManager);
+                todosLayoutManager.cleanSubViews();
+                todosLayoutManager.$el.empty();
                 todosLayoutManager.undelegateEvents();
             }
 
@@ -38,7 +42,9 @@ define([
         var app_router = new AppRouter;
 
         app_router.on('route:login', function() {
-            app_router.cleanSubViews();
+
+            app_router.cleanViews();
+
             if($.cookie('_auth') === 'true') {
                 this.navigate('home', {trigger: true});
             } else {
@@ -46,10 +52,12 @@ define([
                     router: this
                 });
             }
+
         });
 
         app_router.on('route:home', function() {
-            app_router.cleanSubViews();
+            app_router.cleanViews();
+
             if($.cookie('_auth') === 'true') {
                 todosLayoutManager = new TodosLayoutManager({
                     router: this
@@ -57,11 +65,13 @@ define([
             } else {
                 this.navigate('login', {trigger: true});
             }
+
         });
 
         Backbone.history.start();
     };
     return {
-        initialize: initialize
+        initialize: initialize,
+        appRouter: AppRouter
     };
 });

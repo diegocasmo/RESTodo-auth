@@ -12,33 +12,38 @@ define([
 
     var TodosLayoutManager = Backbone.View.extend({
 
-        el: $("#todos"),
+        el: $('#todos'),
 
         initialize: function(options) {
             this.router = options.router;
+            this._simulateAuth();
+            this.todoCreatorView = new TodoCreatorView({
+                    router: this.router,
+                    todosLayoutManager: this
+                });
             //this._signOut();
 
             /*
             this.collection = new TodosCollection();
-            this.todoCreatorView = new TodoCreatorView({
-                    router: this.router,
-                    layoutManager: this
-                });
             this.message = Message.getInstance();
             this._configureRender();
             */
+
+            this.render();
         },
 
 
         render: function(todoListView) {
-            todoListView.setElement(this.$('#todo-list')).render();
-            this.todoCreatorView.setElement(this.$('#todo-creator')).render();
+            //todoListView.setElement(this.$('#todo-list')).render();
+            this.todoCreatorView.setElement().render();
         },
 
-        _signOut: function() {
-            $.get('http://localhost:8000/api/v1/user/sign-out');
-            $.cookie('_auth', false);
-            this.router.navigate('login', {trigger: true});
+        _simulateAuth: function() {
+            $.get('http://localhost:8000/api/v1/user/test');
+        },
+
+        cleanSubViews: function() {
+            this.todoCreatorView.remove();
         },
 
         _configureRender: function() {

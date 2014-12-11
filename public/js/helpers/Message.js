@@ -31,7 +31,11 @@ define([
                     },
 
                     _setStaticMessage: function(msg) {
-                        $('#errorMessage').text(msg);
+                        $flashMessage = $('#flash-message');
+                        $flashMessage.text(msg);
+                        $flashMessage.animate({
+                            opacity: 1
+                        });
                     }               
                 };
             }

@@ -15,16 +15,16 @@
         
         _customErrors: {
             email: {
-                empty: 'Please enter an Email.',
-                invalidEmail: 'Please enter a valid Email'
+                empty: 'Please enter an email.',
+                invalidEmail: 'Please enter a valid email'
             },
             password: {
-                empty: 'Please enter a Password.',
+                empty: 'Please enter a password.',
                 tooShort: 'Password must be larger than 3 characteres.'
             },
             password_repeat: {
-                empty: 'Please enter a Password Repeat.',
-                notMatch: 'Password Repeat must match Passwrod.'
+                empty: 'Please enter a password repeat.',
+                notMatch: 'Password Repeat must match passwrod.'
             }
         },
 

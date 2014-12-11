@@ -1,6 +1,6 @@
 /* line 1, ../sass/base/_base.scss */
 body {
-  background: #E9EAED;
+  background: #e9eaed;
 }
 
 /* line 5, ../sass/base/_base.scss */
@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 .site-title {
   text-align: center;
   color: white;
-  margin: 0px;
+  margin: 30px 0px 0px;
 }
 
 /* line 23, ../sass/base/_base.scss */
@@ -74,7 +74,7 @@ input[type="submit"] {
 /* line 1, ../sass/base/_errors.scss */
 span.error {
   display: none;
-  color: #FFF;
+  color: white;
   text-align: center;
   background: rgba(211, 45, 45, 0.9);
   margin: 0px;
@@ -86,9 +86,9 @@ span.error {
 
 /* line 11, ../sass/base/_errors.scss */
 span.success {
-  color: #FFF;
+  color: white;
   text-align: center;
-  background: green;
+  background: #279741;
   font-size: 14px;
   display: block;
   padding: 7px;
@@ -106,7 +106,7 @@ form {
 /* line 5, ../sass/base/_forms.scss */
 button, input[type="submit"] {
   background: #279741;
-  color: #FFF;
+  color: white;
   border: 0px;
   padding: 10px 20px;
   cursor: pointer;
@@ -121,6 +121,10 @@ button:hover, button:active, button:focus, input[type="submit"]:hover, input[typ
 
 /* line 1, ../sass/base/_messages.scss */
 span.flash-message {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
   display: block;
   opacity: 0;
   text-align: center;
@@ -131,7 +135,7 @@ span.flash-message {
   margin-left: auto;
   margin-right: auto;
   padding: 9px;
-  color: #FFF;
+  color: white;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -139,7 +143,7 @@ span.flash-message {
 
 @font-face {
   font-family: "Titillium";
-  src: url('fonts/titillium/titillium-thin.eot?1418229214') format('embedded-opentype'), url('fonts/titillium/titillium-thin.ttf?1418229214') format('truetype'), url('fonts/titillium/titillium-thin.woff?1418229214') format('woff');
+  src: url('fonts/titillium/titillium-thin.eot?1418258856') format('embedded-opentype'), url('fonts/titillium/titillium-thin.ttf?1418258856') format('truetype'), url('fonts/titillium/titillium-thin.woff?1418258856') format('woff');
 }
 /* line 1, ../sass/components/_create-todo.scss */
 .create-todo {
@@ -171,7 +175,7 @@ span.flash-message {
     -webkit-border-bottom-right-radius: 0px;
     border-bottom-right-radius: 0px;
     float: left;
-    width: 80%;
+    width: 65%;
   }
 }
 @media (min-width: 768px) {
@@ -183,7 +187,7 @@ span.flash-message {
     -moz-border-radius-bottomleft: 0px;
     -webkit-border-bottom-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    width: 20%;
+    width: 35%;
   }
 }
 
@@ -199,6 +203,7 @@ span.flash-message {
   border-radius: 4px;
   text-align: left;
   max-width: 100%;
+  padding: 7px;
 }
 @media (min-width: 640px) {
   /* line 1, ../sass/components/_registration.scss */
@@ -208,34 +213,34 @@ span.flash-message {
     padding: 20px;
   }
 }
-/* line 15, ../sass/components/_registration.scss */
+/* line 16, ../sass/components/_registration.scss */
 .registration h5 {
   margin: 5px 10px;
   text-align: left;
   padding: 0px 5px;
 }
 
-/* line 22, ../sass/components/_registration.scss */
+/* line 23, ../sass/components/_registration.scss */
 .field {
   margin: 5px 10px;
 }
-/* line 25, ../sass/components/_registration.scss */
+/* line 26, ../sass/components/_registration.scss */
 .field input {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
-/* line 31, ../sass/components/_registration.scss */
-.user-login input[type="password"] {
+/* line 32, ../sass/components/_registration.scss */
+.log-in input[type="password"] {
   margin: 10px auto;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 @media (min-width: 768px) {
-  /* line 31, ../sass/components/_registration.scss */
-  .user-login input[type="password"] {
+  /* line 32, ../sass/components/_registration.scss */
+  .log-in input[type="password"] {
     margin: 0px;
     -moz-border-radius-topright: 0px;
     -webkit-border-top-right-radius: 0px;
@@ -244,34 +249,34 @@ span.flash-message {
     -webkit-border-bottom-right-radius: 0px;
     border-bottom-right-radius: 0px;
     float: left;
-    width: 80%;
+    width: 65%;
   }
 }
 @media (min-width: 768px) {
-  /* line 44, ../sass/components/_registration.scss */
-  .user-login input[type="submit"] {
+  /* line 45, ../sass/components/_registration.scss */
+  .log-in input[type="submit"] {
     -moz-border-radius-topleft: 0px;
     -webkit-border-top-left-radius: 0px;
     border-top-left-radius: 0px;
     -moz-border-radius-bottomleft: 0px;
     -webkit-border-bottom-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    width: 20%;
+    width: 35%;
     margin: 0px 0px;
     height: 37px;
   }
 }
 
-/* line 58, ../sass/components/_registration.scss */
-.create-acount input[name="create-password_repeat"]:last-child {
+/* line 59, ../sass/components/_registration.scss */
+.create input[name="create-password_repeat"]:last-child {
   margin: 10px auto;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 @media (min-width: 768px) {
-  /* line 58, ../sass/components/_registration.scss */
-  .create-acount input[name="create-password_repeat"]:last-child {
+  /* line 59, ../sass/components/_registration.scss */
+  .create input[name="create-password_repeat"]:last-child {
     margin: 0px;
     -moz-border-radius-topright: 0px;
     -webkit-border-top-right-radius: 0px;
@@ -280,19 +285,19 @@ span.flash-message {
     -webkit-border-bottom-right-radius: 0px;
     border-bottom-right-radius: 0px;
     float: left;
-    width: 80%;
+    width: 65%;
   }
 }
 @media (min-width: 768px) {
-  /* line 72, ../sass/components/_registration.scss */
-  .create-acount input[type="submit"] {
+  /* line 73, ../sass/components/_registration.scss */
+  .create input[type="submit"] {
     -moz-border-radius-topleft: 0px;
     -webkit-border-top-left-radius: 0px;
     border-top-left-radius: 0px;
     -moz-border-radius-bottomleft: 0px;
     -webkit-border-bottom-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    width: 20%;
+    width: 35%;
     margin: 0px 0px;
     height: 37px;
   }
@@ -301,7 +306,7 @@ span.flash-message {
 /* line 1, ../sass/components/_todo.scss */
 li {
   position: relative;
-  background: #EEEEEE;
+  background: #eeeeee;
   margin: 10px auto !important;
   max-width: 35rem !important;
   -moz-border-radius: 4px;

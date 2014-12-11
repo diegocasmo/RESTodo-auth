@@ -55,19 +55,18 @@ define([
                     {
                     url: user.url + 'user/sign-in',
                     success: function(model, response, options) {
-                        console.log('You have been logged in.');
                         $.cookie('_auth', true);
                         that.router.navigate('home', {trigger: true});
                     },
 
                     error: function(model, response, options) {
-                        console.log('_logIn error');
                         $.cookie('_auth', false);
                         that.router.navigate('login', {trigger: true});
+                        that.message._setFlashMessage('Wrong email or password.');
                     }
                 });
             } else {
-                this._showErrors(validator);
+                this._showErrors(validator, 'log-in');
             }
         },
 
@@ -96,7 +95,7 @@ define([
                     {
                     url: user.url + 'account',
                     success: function(model, response, options) {
-                        console.log('Your account has been created!');
+                        that.message._setStaticMessage('Your account has been created. We have sent you an email to activate your account.');
                     },
 
                     error: function(model, response, options) {
@@ -123,29 +122,28 @@ define([
                                         break;
                                 }
                             });
-                            that._showErrors(parsedErrors);
+                            that._showErrors(parsedErrors, 'create');
                         } else {
-                            // show static message error
+                            that.message._setStaticMessage(that.message._customErrors.error);
                         }
                     }
                 });
             } else {
-                this._showErrors(validator);
+                this._showErrors(validator, 'create');
             }
         },
         
-        _showErrors: function(errors) {
+        _showErrors: function(errors, form) {
             for (var key in errors) {
                var obj = errors[key];
                for (var prop in obj) {
                   if(obj.hasOwnProperty(prop)){
-                    $error = $('.error-' + prop);
+                    $error = $('.error-' + form + '-' + prop);
                     $error.text(obj[prop]);
                     $error.css('display', 'block');
                   }
                }
             }
-
         },
 
         _cleanAllErrors: function() {
@@ -157,11 +155,9 @@ define([
         },
 
         _cleanSingleError: function(event) {
-            //console.log('_cleanSingleError');
-            /*
-            $(error).css('display', 'none');
-            $(error).text('');
-            */
+            var $error  = $('.error-' + event.currentTarget.name);
+            $error.css('display', 'none');
+            $error.text('');
         }
     });
 

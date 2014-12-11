@@ -16,7 +16,6 @@
 
         <div class="todos row">
             <div class="small-12 medium-8 small-centered medium-centered columns">
-                <span id="errorMessage" class="error" ></span>
                 <div id="todo-creator"></div>
                 <ul id="todo-list"></ul>
             </div>            

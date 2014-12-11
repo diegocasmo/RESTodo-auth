@@ -5,23 +5,28 @@ define([
     'handlebars',
     'text!templates/todos/todoCreatorView.html',
     'models/TodoModel',
-    'helpers/Message'
+    'helpers/Message',
+    'jqueryCookie'
 ], function($, _, Backbone, Handlebars, todoCreatorView, TodoModel, Message) {
 
     var TodoCreatorView = Backbone.View.extend({
 
         template: Handlebars.compile(todoCreatorView),
 
+        el: $('#todo-creator'),
+
         events: {
             'submit': '_createTodo',
             'focus input[type="text"]': '_deleteTitleErrorMessages',
+            'click #log-out': '_signOut'
         },
 
         initialize: function(options) {
             this.router = options.router;
-            this.layoutManager = options.layoutManager;
-            this.model = new TodoModel();
+            this.layoutManager = options.todosLayoutManager;
+            //this.model = new TodoModel();
             this.message = Message.getInstance();
+            this.render();
         },
 
         render: function() {
@@ -29,8 +34,19 @@ define([
             return this;
         },
 
+        _signOut: function(event) {
+            console.log('_signOut');
+            event.preventDefault();
+            $.get('http://localhost:8000/api/v1/user/sign-out');
+            $.cookie('_auth', false);
+            this.router.navigate('login', {trigger: true});
+        },
+
         _createTodo: function(event) {
             event.preventDefault();
+            console.log('_createTodo');
+            
+            /*
             
             var that = this,        
                 title = $.trim($('input[name="title"]').val());
@@ -57,9 +73,11 @@ define([
                     $('[name="' + objArr.key + '"]').val(objArr.value);
                 });
             }
+            */
         },
 
         _deleteTitleErrorMessages: function(event) {
+            console.log('_deleteTitleErrorMessages');
             event.preventDefault();
             _.each(this.model._customErrors.title, function(customError) {
                 $currentTarget = $(event.currentTarget);
