@@ -10,8 +10,8 @@ class CreateTodosTable extends Migration {
 		Schema::create('todos', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->text('todo');
-			$table->tinyInteger('status')->default('0');
+			$table->text('title');
+			$table->tinyInteger('done')->default('0');
 			$table->timestamps();
 		});
 	}

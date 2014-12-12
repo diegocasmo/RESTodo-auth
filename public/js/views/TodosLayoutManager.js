@@ -23,15 +23,19 @@ define([
             // initialize subviews
             this.todoCreatorView = new TodoCreatorView({
                     router: this.router,
-                    layoutManager: this
+                    todosLayoutManager: this
                 });
             this.todoListView = new TodoListView(options);
-            
-            // fetch collection
-            this.collection.getResults();
+
+            this.configureRender();
 
             this.listenTo(this.collection, 'successOnFetch', this.handleSuccess);
             this.listenTo(this.collection, 'errorOnFetch', this.handleError);
+        },
+
+        configureRender: function() {
+            // fetch collection
+            this.collection.getResults();
         },
 
         handleSuccess: function() {

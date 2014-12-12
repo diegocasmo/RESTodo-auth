@@ -1,31 +1,34 @@
 // base
-$base-bg: #E9EAED;
-$base-shadow: rgb(150, 150, 150);
+$base-bg: #FFF;
+$base-shadow: #656257;
 $base-white: rgb(255, 255, 255);
 
+// main content
+$main-content-bg: #BCAA92;
+
 // messages
-$messsage-bg: rgba(201, 215, 199, 0.36);
+$messsage-bg: rgba(128, 124, 109, 0.9);
 $message-color: #FFF;
 
 // form specific
+$button-hover: #4497B2;
+$button-border: #499FB5;
+$button-submit-bg: #5FB4CA;
+$button-submit-color: #FFF;
 
 // todo
 $todo-bg: #EEEEEE;
-$todo-shadow: rgb(85, 85, 85);
+$todo-shadow: #656257;
 
 //errors
-$error-bg: rgba(211, 45, 45, 0.9);
+$error-bg: rgba(128, 124, 109, 0.9);
 $error-color: #FFF;
 
 //success
-$success-bg: #279741;
+$success-bg: #5FB4CA;
 $success-color: #FFF;
 
 // registration
-$registration-subimt-bg: #279741;
+$registration-subimt-bg: #5FB4CA;
 $registration-subimt-color: #FFF;
 $registration-border: #e1e8ed;
-
-// create
-$create-submit-bg: #279741;
-$create-submit-color: #FFF;

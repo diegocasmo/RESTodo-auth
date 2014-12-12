@@ -6,7 +6,7 @@ class Todo extends \Eloquent {
      * Values of the Todo model which can be filled.
      * @var array
      */
-	protected $fillable = ['user_id', 'todo', 'status'];
+    protected $fillable = ['user_id', 'title', 'done'];
     
     /**
      * The attributes excluded from the model's JSON form.
@@ -22,5 +22,10 @@ class Todo extends \Eloquent {
     {
         return $this->belongsTo('User', 'id');
     }
+
+    public static $rules = array(
+        'title'       => 'required|max:255',
+        'done' => 'required|integer'
+        );
 
 }

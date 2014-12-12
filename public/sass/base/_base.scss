@@ -9,7 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 .app-wrapper {
 	position: relative;
 	
-	@include breakpoint($small-tab, true) {
+	@include breakpoint($mobile, true) {
 		margin-top: 50px;
 	}
 }
@@ -17,11 +17,16 @@ h1, h2, h3, h4, h5, h6 {
 .site-title {
 	text-align: center;
 	color: white;
-	margin: 30px 0px 0px;
+	margin: 100px 0px 0px;
+	text-shadow: 2px 2px 1px $base-shadow;
+
+	@include breakpoint($mobile, true) {
+		margin: 50px 0px 0px;
+	}
 }
 
 .main-content {
-	background: rgba(211, 45, 45, 0.9);
+	background: $main-content-bg;
 	padding: 20px 10px;
 	@include box-shadow($base-shadow 2px 2px 3px);
 	

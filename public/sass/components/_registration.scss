@@ -22,20 +22,12 @@
     button, input[type="submit"] {
         background: $registration-subimt-bg;
         color: $registration-subimt-color;
-
-        &:hover, &:active, &:focus {
-            background: $registration-subimt-bg;
-        }
     }
 }
 
 .log-out {
     background: $registration-subimt-bg;
     color: $registration-subimt-color;
-
-    &:hover, &:active, &:focus {
-        background: $registration-subimt-bg;
-    }
 }
 
 .field {

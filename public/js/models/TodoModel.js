@@ -8,42 +8,39 @@
         url: 'http://localhost:8000/api/v1/todos/',
 
         defaults: {
-            todo: '',
+            title: '',
             done: 0
         },
         
         _customErrors: {
-            todo: {
-                empty: 'Please enter a todo.',
-                tooLong: 'todo is too long.'
+            title: {
+                empty: 'Please enter a title.',
+                tooLong: 'Title is too long.'
             },
             done: {
                 empty: 'Please enter a valid value for done.'
             }
         },
 
-        _validate: function() {
-            var todo = this.attributes.todo,
+        _validateTodo: function() {
+            var title = this.attributes.title,
                 done = this.attributes.done;
 
             var errors = [];
 
-            if (todo === '' || todo === this._customErrors.todo.empty) {
+            if (title === '' || title === this._customErrors.title.empty) {
                 errors.push({
-                    key: 'todo',
-                    value: this._customErrors.todo.empty
+                    title: this._customErrors.title.empty
                 });
-            } else if( todo.length > 255 || todo === this._customErrors.todo.tooLong) {
+            } else if( title.length > 255 || title === this._customErrors.title.tooLong) {
                  errors.push({
-                    key: 'todo',
-                    value: this._customErrors.todo.tooLong
+                    title: this._customErrors.title.tooLong
                 });               
             }
 
             if (done === '' || done === this._customErrors.done.empty) {
                 errors.push({
-                    key: 'done',
-                    value: this._customErrors.done.empty
+                    done: this._customErrors.title.empty
                 });
             }
 

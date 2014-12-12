@@ -34,7 +34,7 @@ define([
             {
                 url: that.model.url + that.model.get('id'),
                 success: function(model, response, options) {
-                    that.message._setFlashMessage(response);
+                    that.message._setFlashMessage('Todo has been successfully removed.');
                     that.unbind(); // Unbind all local event bindings
                     that.remove(); // Remove view from DOM
                 },
@@ -47,7 +47,7 @@ define([
         _changeModel: function() {
             var that = this;
 
-            var done = that.model.get('done');
+            var done = parseInt(that.model.get('done'));
 
             if(done === 1)
                 done = 0;
@@ -55,14 +55,13 @@ define([
                 done = 1;
 
             that.model.save({
-                'id': that.model.get('id'),
-                'todo': that.model.get('todo'),
+                'title': that.model.get('title'),
                 'done': done
             }, 
             { 
                 url: that.model.url + that.model.get('id'),
                 success: function(model, response, options) {
-                    that.message._setFlashMessage(response);
+                    that.message._setFlashMessage('Todo has been successfully updated.');
                 }, 
                 error: function(model, response, options) {
                     that.message._setFlashMessage(that.message._customErrors.error);

@@ -1,7 +1,7 @@
 <li class="todo">
 	<button class="delete" id="{{id}}">X</button>
 	
-	<label>{{todo}}</label>
+	<label>{{title}}</label>
     
     <form method="POST" action="#">
         {{#if done}}
@@ -9,4 +9,3 @@
         <input id={{id}} type="checkbox">{{/if}}
     </form>
 </li>
-	

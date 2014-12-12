@@ -35,7 +35,6 @@ define([
         },
 
         _signOut: function(event) {
-            console.log('_signOut');
             event.preventDefault();
             $.get('http://localhost:8000/api/v1/user/sign-out');
             $.cookie('_auth', false);
@@ -44,38 +43,46 @@ define([
 
         _createTodo: function(event) {
             event.preventDefault();
-            console.log('_createTodo');
 
             var that = this,        
-                todo = $.trim($('input[name="todo"]').val());
+                title = $.trim($('input[name="title"]').val());
 
             var todo = new TodoModel({
-                todo: todo,
+                title: title,
                 done: 0
             });
 
-            var validator = todo._validate();
+            var validator = todo._validateTodo();
             if (_.isEmpty(validator)) {
                 todo.save(null, {
                     success: function(model, response, options) {
-                        that.message._setFlashMessage(response);
-                        that.undelegateEvents();
-                        that.layoutManager._configureRender();
+                        that.message._setFlashMessage('Todo has been successfully created.');
+                        that.layoutManager.configureRender();
                     },
                     error: function() {
                         that.message._setFlashMessage(that.message._customErrors.error);
                     }
                 });
             } else {
-                validator.forEach(function(objArr) {
-                    $('[name="' + objArr.key + '"]').val(objArr.value);
-                });
+                that._showErrors(validator);
+            }
+        },
+
+        _showErrors: function(errors) {
+            for (var key in errors) {
+               var obj = errors[key];
+               for (var prop in obj) {
+                  if(obj.hasOwnProperty(prop)){
+                    $('[name="' + prop + '"]').val(obj[prop]);
+                  }
+               }
             }
         },
 
         _deleteTodoErrorMessages: function(event) {
             event.preventDefault();
-            _.each(this.model._customErrors.todo, function(customError) {
+
+            _.each(this.model._customErrors.title, function(customError) {
                 $currentTarget = $(event.currentTarget);
                 if($currentTarget.val() === customError)
                     $currentTarget.val('');

@@ -33,17 +33,6 @@ class TodosController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 * GET /todos/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 * POST /todos
 	 *
@@ -51,31 +40,7 @@ class TodosController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /todos/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /todos/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+		$this->todos->store(Input::all());
 	}
 
 	/**
@@ -87,7 +52,7 @@ class TodosController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$this->todos->update(Input::all(), $id);
 	}
 
 	/**
@@ -99,7 +64,7 @@ class TodosController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->todos->destroy(Input::all(), $id);
 	}
 
 }
