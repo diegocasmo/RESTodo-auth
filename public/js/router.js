@@ -28,7 +28,14 @@ define([
                 userLayoutManager.cleanSubViews();
                 userLayoutManager.undelegateEvents();
             }
+        },
+
+        addBodyClass: function(page) {
+            var $body = $('body');
+            $body.removeClass();
+            $body.addClass(page)
         }
+
     });
 
     var initialize = function() {
@@ -38,7 +45,8 @@ define([
         app_router.on('route:login', function() {
 
             app_router.cleanSubViews();
-
+            app_router.addBodyClass('login');
+            
             if($.cookie('_auth') === 'true') {
                 this.navigate('home', {trigger: true});
             } else {
@@ -54,6 +62,7 @@ define([
         app_router.on('route:home', function() {
             
             app_router.cleanSubViews();
+            app_router.addBodyClass('home');
 
             if($.cookie('_auth') === 'true') {
                 todosLayoutManager = new TodosLayoutManager({

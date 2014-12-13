@@ -12,12 +12,6 @@ h1, h2, h3, h4, h5, h6 {
 .app-wrapper {
   position: relative;
 }
-@media (min-width: 480px) {
-  /* line 9, ../sass/base/_base.scss */
-  .app-wrapper {
-    margin-top: 50px;
-  }
-}
 
 /* line 17, ../sass/base/_base.scss */
 .site-title {
@@ -406,8 +400,17 @@ li {
   border-radius: 4px;
 }
 
-/* line 1, ../sass/pages/_user.scss */
-.user {
+/* line 3, ../sass/pages/_home.scss */
+.home .user {
   text-align: center;
   margin: 20px auto;
+}
+
+/* line 3, ../sass/pages/_login.scss */
+.login .app-wrapper {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }

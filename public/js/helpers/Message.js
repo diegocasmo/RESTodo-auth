@@ -17,11 +17,17 @@ define([
 
                     _setFlashMessage: function(msg) {
                         $flashMessage = $('#flash-message');
+
+                        // make sure any previoys animation is stopped
+                        $flashMessage.stop();
+                        clearInterval(this.timeout);
+
                         $flashMessage.text(msg);
                         $flashMessage.animate({
                             opacity: 1
                         });
-                        setTimeout(function () {
+                        
+                        this.timeout = setTimeout(function () {
                             $flashMessage.animate({
                                 opacity: 0
                             },function() {
