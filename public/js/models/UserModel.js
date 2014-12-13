@@ -20,11 +20,11 @@
             },
             password: {
                 empty: 'Please enter a password.',
-                tooShort: 'Password must be larger than 3 characteres.'
+                tooShort: 'Password must be larger than 3 characters.'
             },
             password_repeat: {
                 empty: 'Please enter a password repeat.',
-                notMatch: 'Password Repeat must match passwrod.'
+                notMatch: 'Password repeat must match password.'
             }
         },
 
