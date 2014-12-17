@@ -17,6 +17,7 @@ define([
 
             // initialize sub view
             this.registrationView = new RegistrationView(options);
+            this.render();
         },
 
         render: function() {

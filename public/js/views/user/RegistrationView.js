@@ -24,7 +24,6 @@ define([
         initialize: function(options) {
             this.router = options.router;
             this.message = Message.getInstance();
-            this.render();
         },
 
         render: function() {

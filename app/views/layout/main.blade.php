@@ -1,11 +1,11 @@
 @include('layout.base.header')
  
         @if(Session::has('success'))
-            <span class="success"> {{ Session::get('success') }} </span>        
+            <span class="session success"> {{ Session::get('success') }} </span>        
         @endif
  
         @if(Session::has('error'))
-            <span class="error">{{ Session::get('error') }}</span>
+            <span class="session error">{{ Session::get('error') }}</span>
         @endif
  
         @yield('content')

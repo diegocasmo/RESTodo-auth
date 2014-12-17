@@ -19,7 +19,6 @@ define([
         initialize: function(options) {
             this.model = options.model;
             this.message = Message.getInstance();
-            this.render();
         },
 
         render: function() {

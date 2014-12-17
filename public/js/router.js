@@ -22,11 +22,22 @@ define([
             if(todosLayoutManager !== 'undefined') {
                 todosLayoutManager.cleanSubViews();
                 todosLayoutManager.undelegateEvents();
+                todosLayoutManager = 'undefined';
             }           
 
             if(userLayoutManager !== 'undefined') {
                 userLayoutManager.cleanSubViews();
                 userLayoutManager.undelegateEvents();
+                userLayoutManager = 'undefined';
+            }
+        },
+
+        cleanSessionMessage: function() {
+            var $sessionMsg = $('.session');
+            if($sessionMsg.length > 0) {
+                _.each($sessionMsg, function(msg) {
+                    $(msg).remove();
+                });
             }
         },
 
@@ -63,6 +74,7 @@ define([
             
             app_router.cleanSubViews();
             app_router.addBodyClass('home');
+            app_router.cleanSessionMessage();
 
             if($.cookie('_auth') === 'true') {
                 todosLayoutManager = new TodosLayoutManager({

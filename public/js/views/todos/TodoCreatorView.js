@@ -26,7 +26,6 @@ define([
             this.layoutManager = options.todosLayoutManager;
             this.model = new TodoModel();
             this.message = Message.getInstance();
-            this.render();
         },
 
         render: function() {
