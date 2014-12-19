@@ -13,12 +13,5 @@ Route::group(array('prefix' => 'api/v1'), function()
          * Todos reources
          */
         Route::resource('todos', 'v1\TodosController');
-
-        /*
-         *  Test route for auth (GET)
-         */
-        Route::get('user/test', function() {
-            echo 'test';
-        });
     });
 });

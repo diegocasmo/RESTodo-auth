@@ -41,28 +41,31 @@ define([
 
         _createTodo: function(event) {
             event.preventDefault();
+            if(AuthHelper.isLoggedIn()) {
+                var that = this,        
+                    title = $.trim($('input[name="title"]').val());
 
-            var that = this,        
-                title = $.trim($('input[name="title"]').val());
-
-            var todo = new TodoModel({
-                title: title,
-                done: 0
-            });
-
-            var validator = todo._validateTodo();
-            if (_.isEmpty(validator)) {
-                todo.save(null, {
-                    success: function(model, response, options) {
-                        that.message._setFlashMessage('Todo has been successfully created.');
-                        that.layoutManager.configureRender();
-                    },
-                    error: function() {
-                        that.message._setFlashMessage(that.message._customErrors.error);
-                    }
+                var todo = new TodoModel({
+                    title: title,
+                    done: 0
                 });
+
+                var validator = todo._validateTodo();
+                if (_.isEmpty(validator)) {
+                    todo.save(null, {
+                        success: function(model, response, options) {
+                            that.message._setFlashMessage('Todo has been successfully created.');
+                            that.layoutManager.configureRender();
+                        },
+                        error: function() {
+                            that.message._setFlashMessage(that.message._customErrors.error);
+                        }
+                    });
+                } else {
+                    that._showErrors(validator);
+                }
             } else {
-                that._showErrors(validator);
+                AuthHelper.logOut();
             }
         },
 

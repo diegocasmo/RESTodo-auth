@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'jqueryCookie'
-], function ($, _) {
+], function ($, _, Router) {
     
     var AuthHelper = {
 
@@ -17,6 +17,7 @@ define([
         logOut: function() {
             this.setCookie(false);
             $.get('http://localhost:8000/api/v1/user/sign-out');
+            window.location.replace('/#login');
         },
 
         // sets cookie to a particular value
