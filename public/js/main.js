@@ -7,7 +7,6 @@ require.config({
     handlebars: 'libs/handlebars/handlebars',
     jqueryCookie: 'libs/jquery/jquery.cookie'
   }
-
 });
 
 require([

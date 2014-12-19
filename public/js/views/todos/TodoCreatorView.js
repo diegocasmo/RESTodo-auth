@@ -6,8 +6,8 @@ define([
     'text!templates/todos/todoCreatorView.html',
     'models/TodoModel',
     'helpers/Message',
-    'jqueryCookie'
-], function($, _, Backbone, Handlebars, todoCreatorView, TodoModel, Message) {
+    'helpers/AuthHelper'
+], function($, _, Backbone, Handlebars, todoCreatorView, TodoModel, Message, AuthHelper) {
 
     var TodoCreatorView = Backbone.View.extend({
 
@@ -35,8 +35,7 @@ define([
 
         _signOut: function(event) {
             event.preventDefault();
-            $.get('http://localhost:8000/api/v1/user/sign-out');
-            $.cookie('_auth', false);
+            AuthHelper.logOut();
             this.router.navigate('login', {trigger: true});
         },
 

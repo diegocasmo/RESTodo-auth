@@ -6,8 +6,7 @@ define([
     'collections/TodosCollection',
     'views/todos/TodoListView',
     'views/todos/TodoCreatorView',
-    'helpers/Message',
-    'jqueryCookie'
+    'helpers/Message'
 ], function($, _, Backbone, Handlebars, TodosCollection, TodoListView, TodoCreatorView, Message) {
 
     var TodosLayoutManager = Backbone.View.extend({

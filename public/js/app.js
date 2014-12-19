@@ -4,9 +4,9 @@ define([
     'backbone',
     'router',
     'helpers/Message',
-    'jqueryCookie',
+    'helpers/AuthHelper',
     'handlebars'
-], function($, _, Backbone, Router, Message) {
+], function($, _, Backbone, Router, Message, AuthHelper) {
     var initialize = function() {
 
         var app_router = new Router.appRouter();
@@ -20,15 +20,13 @@ define([
         $.ajaxSetup({
             statusCode: {
                 401: function() {
-                    // Redirec the to the login page.
-                    console.log('Redirect to the login page.');
-                    $.cookie('_auth', false);
+                    // Redirec the to the login page
+                    AuthHelper.setCookie(false);
                     app_router.navigate('login', {trigger: true});
                 },
                 403: function() {
-                    // 403 -- Access denied
-                    console.log('Redirect to the login page.');
-                    $.cookie('_auth', false);
+                    // Redirec the to the login page
+                    AuthHelper.setCookie(false);
                     app_router.navigate('login', {trigger: true});
                 }
             }

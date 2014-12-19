@@ -6,8 +6,8 @@ define([
     'text!templates/user/registrationViewTemplate.html',
     'helpers/Message',
     'models/UserModel',
-    'jqueryCookie'
-], function($, _, Backbone, Handlebars, registrationView, Message, UserModel) {
+    'helpers/AuthHelper'
+], function($, _, Backbone, Handlebars, registrationView, Message, UserModel, AuthHelper) {
 
     var RegistrationView = Backbone.View.extend({
 
@@ -54,12 +54,12 @@ define([
                     {
                     url: user.url + 'user/sign-in',
                     success: function(model, response, options) {
-                        $.cookie('_auth', true);
+                        AuthHelper.setCookie(true);
                         that.router.navigate('home', {trigger: true});
                     },
 
                     error: function(model, response, options) {
-                        $.cookie('_auth', false);
+                        AuthHelper.setCookie(false);
                         that.router.navigate('login', {trigger: true});
                         that.message._setFlashMessage('Wrong email or password.');
                     }

@@ -4,9 +4,9 @@ define([
     'backbone',
     'views/TodosLayoutManager',
     'views/UserLayoutManager',
-    'handlebars',
-    'jqueryCookie'
-], function($, _, Backbone, TodosLayoutManager, UserLayoutManager) {
+    'helpers/AuthHelper',
+    'handlebars'
+], function($, _, Backbone, TodosLayoutManager, UserLayoutManager, AuthHelper) {
 
     var userLayoutManager = 'undefined',
         todosLayoutManager = 'undefined';
@@ -58,11 +58,11 @@ define([
             app_router.cleanSubViews();
             app_router.addBodyClass('login');
             
-            if($.cookie('_auth') === 'true') {
+            if(AuthHelper.isLoggedIn()) {
                 this.navigate('home', {trigger: true});
             } else {
                 // make sure server session is always destroyed
-                $.get('http://localhost:8000/api/v1/user/sign-out');
+                AuthHelper.logOut();
                 userLayoutManager = new UserLayoutManager({
                     router: this
                 });
@@ -76,7 +76,7 @@ define([
             app_router.addBodyClass('home');
             app_router.cleanSessionMessage();
 
-            if($.cookie('_auth') === 'true') {
+            if(AuthHelper.isLoggedIn()) {
                 todosLayoutManager = new TodosLayoutManager({
                     router: this
                 });
