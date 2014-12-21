@@ -52,14 +52,9 @@ define([
                 var that = this,
                     done = parseInt(that.model.get('done'));
 
-                if(done === 1)
-                    done = 0;
-                else
-                    done = 1;
-
                 that.model.save({
                     'title': that.model.get('title'),
-                    'done': done
+                    'done': (done === 1 ? 0 : 1)
                 }, 
                 { 
                     url: that.model.url + that.model.get('id'),
